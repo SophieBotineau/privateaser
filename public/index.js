@@ -153,7 +153,7 @@ events.forEach(function(event){
       event.price=event.time*bar.pricePerHour+event.persons*bar.pricePerPerson;
     }
   })
-  if (event.options.deductibleReduction==true){
+  if (event.options.deductibleReduction==true){ //par hasard ces conditions concordent ici mais doit etre corrige
     if (event.persons>60){
       event.price=0.5*event.price;
     }
@@ -164,6 +164,10 @@ events.forEach(function(event){
       event.price=0.7*event.price;
     }
   }
+  event.commission=0.3*event.price;
+  event.insurance=0.5*event.commission;
+  event.treasury=event.persons;
+  event.privateaser=event.commission-event.treasury-event.insurance;
 });
 
 

@@ -73,6 +73,7 @@ const events = [{
   }
 }];
 
+
 //list of actors for payment
 //useful from step 5
 const actors = [{
@@ -145,6 +146,26 @@ const actors = [{
     'amount': 0
   }]
 }];
+
+events.forEach(function(event){
+  bars.forEach(function(bar) {
+    if (event.barId==bar.id){
+      event.price=event.time*bar.pricePerHour+event.persons*bar.pricePerPerson;
+    }
+  })
+  if (event.options.deductibleReduction==true){
+    if (event.persons>60){
+      event.price=0.5*event.price;
+    }
+    else if (event.persons<20){
+      event.price=0.9*event.price;
+    }
+    else{
+      event.price=0.7*event.price;
+    }
+  }
+});
+
 
 console.log(bars);
 console.log(events);

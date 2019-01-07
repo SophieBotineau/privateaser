@@ -168,6 +168,9 @@ events.forEach(function(event){
   event.insurance=0.5*event.commission;
   event.treasury=event.persons;
   event.privateaser=event.commission-event.treasury-event.insurance;
+  if(event.options.deductibleReduction==true){
+    
+  }
 });
 
 

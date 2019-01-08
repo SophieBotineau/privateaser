@@ -164,12 +164,12 @@ events.forEach(function(event){
       event.price=0.7*event.price;
     }
   }
-  event.commission=0.3*event.price;
-  event.insurance=0.5*event.commission;
-  event.treasury=event.persons;
-  event.privateaser=event.commission-event.treasury-event.insurance;
+ 
+  event.commission.insurance=(0.3*event.price)*0.5;
+  event.commission.treasury=event.persons;
+  event.commission.privateaser=0.3*event.price-event.commission.treasury-event.commission.insurance;
   if(event.options.deductibleReduction==true){
-    
+    event.commission.privateaser=event.commission.privateaser+event.persons;
   }
 });
 
